@@ -1,0 +1,6 @@
+google-api-python-client
+matplotlib
+pandas
+reportlab
+streamlit
+textblob
