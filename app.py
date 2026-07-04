@@ -7,6 +7,7 @@ import re
 import random
 import html
 from io import BytesIO
+from xquik_export import load_xquik_rows
 
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet
@@ -223,11 +224,16 @@ elif platform == "🐦 X":
 
     if menu == "🏠 Home":
         keyword = st.text_input("Enter Keyword")
+        uploaded = st.file_uploader("Upload a CSV, JSON, or JSONL Xquik export", type=["csv", "json", "jsonl"])
 
         if st.button("Analyze"):
-            tweets = fake_tweets(keyword)
-            sentiments = [get_sentiment(t) for t in tweets]
+            if uploaded:
+                rows = load_xquik_rows(uploaded.getvalue())
+                tweets = [row["tweet"] for row in rows]
+            else:
+                tweets = fake_tweets(keyword)
 
+            sentiments = [get_sentiment(tweet) for tweet in tweets]
             df = pd.DataFrame({"Comment": tweets, "Sentiment": sentiments})
             st.session_state.df = df
 

@@ -27,9 +27,7 @@ It also provides:
 
 
 
-⚠️ The X (Twitter) sentiment analysis module is currently under development.
-
-At present, the module uses simulated/sample tweet data for demonstrating sentiment analysis functionality. Real-time tweet fetching and live API integration will be added in future updates.
+The X sentiment analysis module supports CSV, JSON, and JSONL Xquik exports. If no file is uploaded, the app can still use simulated sample posts for demonstration.
 
 ### Planned Improvements
 - Real-time X API integration
@@ -111,12 +109,7 @@ cd youtube-comment-sentiment-analyzer
 ## 3️ Install Required Libraries
 
 ```bash
-pip install streamlit
-pip install pandas
-pip install textblob
-pip install matplotlib
-pip install google-api-python-client
-pip install reportlab
+pip install -r requirements.txt
 ```
 
 
